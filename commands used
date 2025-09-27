@@ -1,0 +1,6 @@
+Get-NetFirewallRule | Format-Table DisplayName,Direction,Action,Enabled,Profile -AutoSize | Out-File ...
+New-NetFirewallRule -DisplayName "Block_Test_Port_2323" -Direction Inbound -Action Block -Protocol TCP -LocalPort 2323 -Profile Any
+Test-NetConnection -ComputerName localhost -Port 2323
+New-NetFirewallRule -DisplayName "Allow_SSH_Port_22" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 22 -Profile Any
+Remove-NetFirewallRule -DisplayName "Block_Test_Port_2323"
+Remove-NetFirewallRule -DisplayName "Allow_SSH_Port_22"
